@@ -4,26 +4,40 @@ using UnityEngine;
 
 public class wheelController : MonoBehaviour
 {
-    private const string HORIZONTAL = "Horizontal";
-    private const string VERTICAL = "Vertical";
-    [SerializeField] WheelCollider wheelCollider;
-    private float HorizontalInput;
-    private float VerticalInput;
-    public float MotorSpeed;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+	[SerializeField] float hehespeed;
+	public WheelCollider LeftWheel;
+	public WheelCollider RightWheel;
 
-    // Update is called once per frame
-    void Update()
-    {
-        wheelCollider.motorTorque = HorizontalInput * MotorSpeed;
-    }
-    void GetInput()
-    {
-        HorizontalInput = Input.GetAxis(HORIZONTAL);
-        VerticalInput = Input.GetAxis(VERTICAL);
-    }
+	public float curAcceleration;
+	public float breakForce;
+	private float curBreakForce;
+	public float turnAngle = 15f;
+	private float currTurn;
+
+
+	// Start is called before the first frame update
+	void Start()
+	{
+	}
+
+	// Update is called once per frame
+	void Update()
+	{
+		if (Input.GetKey(KeyCode.Space))
+			curBreakForce = breakForce;
+		else curBreakForce = 0f;
+
+		curAcceleration = hehespeed * Input.GetAxis("Vertical");
+		LeftWheel.motorTorque = curAcceleration;
+
+		curAcceleration = hehespeed * Input.GetAxis("Vertical");
+		RightWheel.motorTorque = curAcceleration;
+
+		LeftWheel.brakeTorque = curBreakForce;
+		RightWheel.brakeTorque = curBreakForce;
+
+		currTurn = turnAngle * Input.GetAxis("Horizontal");
+		LeftWheel.steerAngle = currTurn;
+		RightWheel.steerAngle = currTurn;
+	}
 }
