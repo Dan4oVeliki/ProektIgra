@@ -17,17 +17,11 @@ public class wheelController : MonoBehaviour
 
 	private void Update()
 	{
-		// Assuming the XR knob value ranges from 0 to 1
 		float knobValue = knob.value;
-
-		// Check if the knob is turned forward (value increased)
 		if (knobValue > previousKnobValue)
 		{
-			// Apply motor torque only when turning forward
 			ApplyMotorTorque();
 		}
-
-		// Update the previous knob value for the next frame
 		previousKnobValue = knobValue;
 	}
 
