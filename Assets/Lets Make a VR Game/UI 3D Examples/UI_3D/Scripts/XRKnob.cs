@@ -336,10 +336,15 @@ namespace UnityEngine.XR.Content.Interaction
                 var normalizeAngle = angle - m_MinAngle;
                 angle = (Mathf.Round(normalizeAngle / m_AngleIncrement) * m_AngleIncrement) + m_MinAngle;
             }
+			if (m_Handle != null)
+			{
+				// Reset the local rotation of the m_Handle
+				m_Handle.localRotation = Quaternion.identity;
 
-            if (m_Handle != null)
-                m_Handle.localEulerAngles = new Vector3(0.0f, angle, 0.0f);
-        }
+				// Set the new rotation
+				m_Handle.localEulerAngles = new Vector3(0.0f, angle, 0.0f);
+			}
+		}
 
         void SetValue(float value)
         {
