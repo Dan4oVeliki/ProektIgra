@@ -1,39 +1,63 @@
 using UnityEngine;
 using UnityEngine.InputSystem.XR;
 using UnityEngine.XR.Content.Interaction;
+using UnityEngine.XR.Interaction.Toolkit;
 
 public class WheelController : MonoBehaviour
 {
-	public XRKnob xrKnob;
-	private float initialKnobValue;
-
-	// Adjust this value to control the sensitivity of torque applied
-	public float torqueMultiplier = 10f;
-
-	// Reference to WheelCollider (attach your wheel collider to this field)
 	public WheelCollider wheelCollider;
+	public float SpeedWheel;
+	private float tempvalue;
+	public float BreakForce;
 
+	public XRKnob interactable; // Reference to your XR Interactable (XR Knob, Button, etc.)
+	public float resetDuration = 1f;
+
+	private float currentValue;
+	private float timeSinceLastInteraction;
 	private void Start()
 	{
-		initialKnobValue = xrKnob.value;
+		currentValue = interactable.GetComponent<XRKnob>().value; // Assuming XRKnob is used	
 	}
 
 	private void Update()
 	{
-		// Calculate the change in knob value
-		float knobDelta = xrKnob.value - initialKnobValue;
 
-		// Apply torque to the wheel collider based on the knob movement
-		ApplyWheelTorque(knobDelta * torqueMultiplier);
+		// Check if the XR Interactable is currently interacted with
+		if (interactable.isSelected)
+		{
+			// Update the time since the last interaction
+			timeSinceLastInteraction = 0f;
+			if (interactable.value > 0.5f)
+			{
+				ApplyWheelTorque(SpeedWheel);
+			}
+			else if (interactable.value < 0.5f)
+			{
+				ApplyWheelTorque(-SpeedWheel);
+			}
+		}
+		else
+		{
+			timeSinceLastInteraction += Time.deltaTime;
 
-		// Update initial knob value for the next frame
-		initialKnobValue = xrKnob.value;
+			// Check if it's time to reset the value
+			if (timeSinceLastInteraction >= resetDuration)
+			{
+				interactable.value = 0.5f;
+			}
+			//if (interactable.value==0.5f)
+			//{
+			//	wheelCollider.brakeTorque = BreakForce;
+			//}
+		}
+		Debug.Log($"{interactable.isSelected} {gameObject.name}");
 	}
 
 	private void ApplyWheelTorque(float torque)
 	{
-		// Apply torque to the WheelCollider here
-		// Adjust the wheel collider settings based on your requirements
+				Debug.Log("minava tova");
+
 		wheelCollider.motorTorque = torque;
 	}
 }
