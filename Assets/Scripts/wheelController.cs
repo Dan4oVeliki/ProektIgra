@@ -46,18 +46,19 @@ public class WheelController : MonoBehaviour
 			{
 				interactable.value = 0.5f;
 			}
-			//if (interactable.value==0.5f)
-			//{
-			//	wheelCollider.brakeTorque = BreakForce;
-			//}
+			if (interactable.value == 0.5f && wheelCollider.rpm > 0.1f&&timeSinceLastInteraction>=resetDuration)
+			{
+				Debug.Log("SPIRACHKAAA" + gameObject.name);
+				wheelCollider.brakeTorque = BreakForce;
+			}
 		}
 		Debug.Log($"{interactable.isSelected} {gameObject.name}");
 	}
 
 	private void ApplyWheelTorque(float torque)
 	{
-				Debug.Log("minava tova");
+				Debug.Log($"minava tova {torque}");
 
-		wheelCollider.motorTorque = torque;
+		wheelCollider.motorTorque += torque;
 	}
 }
