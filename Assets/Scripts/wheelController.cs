@@ -1,32 +1,26 @@
-using UnityEngine;
-using UnityEngine.InputSystem.XR;
 using UnityEngine.XR.Content.Interaction;
-using UnityEngine.XR.Interaction.Toolkit;
+using UnityEngine;
 
 public class WheelController : MonoBehaviour
 {
 	public WheelCollider wheelCollider;
 	public float SpeedWheel;
-	private float tempvalue;
 	public float BreakForce;
-
-	public XRKnob interactable; // Reference to your XR Interactable (XR Knob, Button, etc.)
+	public XRKnob interactable;
 	public float resetDuration = 1f;
 
 	private float currentValue;
 	private float timeSinceLastInteraction;
+
 	private void Start()
 	{
-		currentValue = interactable.GetComponent<XRKnob>().value; // Assuming XRKnob is used	
+		currentValue = interactable.value;
 	}
 
 	private void Update()
 	{
-
-		// Check if the XR Interactable is currently interacted with
 		if (interactable.isSelected)
 		{
-			// Update the time since the last interaction
 			timeSinceLastInteraction = 0f;
 			if (interactable.value > 0.5f)
 			{
@@ -41,15 +35,24 @@ public class WheelController : MonoBehaviour
 		{
 			timeSinceLastInteraction += Time.deltaTime;
 
-			// Check if it's time to reset the value
 			if (timeSinceLastInteraction >= resetDuration)
 			{
 				interactable.value = 0.5f;
 			}
-			if (interactable.value == 0.5f && wheelCollider.rpm > 0.1f&&timeSinceLastInteraction>=resetDuration)
+
+			if (interactable.value == 0.5f && wheelCollider.rpm > 0.1f && timeSinceLastInteraction >= resetDuration)
 			{
-				Debug.Log("SPIRACHKAAA" + gameObject.name);
-				wheelCollider.brakeTorque = BreakForce;
+				// Check if brake torque is not already applied
+				if (wheelCollider.brakeTorque == 0f)
+				{
+					Debug.Log("SPIRACHKAAAA" + gameObject.name);
+					wheelCollider.brakeTorque += BreakForce;
+				}
+			}
+			else
+			{
+				// Reset brake torque when conditions are not met
+				wheelCollider.brakeTorque = 0f;
 			}
 		}
 		Debug.Log($"{interactable.isSelected} {gameObject.name}");
@@ -57,8 +60,8 @@ public class WheelController : MonoBehaviour
 
 	private void ApplyWheelTorque(float torque)
 	{
-				Debug.Log($"minava tova {torque}");
-
+		Debug.Log($"Applying Torque {torque}");
 		wheelCollider.motorTorque += torque;
 	}
 }
+
