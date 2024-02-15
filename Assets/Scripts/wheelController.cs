@@ -24,11 +24,11 @@ public class WheelController : MonoBehaviour
 			timeSinceLastInteraction = 0f;
 			if (interactable.value > 0.5f)
 			{
-				ApplyWheelTorque(SpeedWheel);
+				ApplyWheelTorque(SpeedWheel*(interactable.value*2));
 			}
 			else if (interactable.value < 0.5f)
 			{
-				ApplyWheelTorque(-SpeedWheel);
+				ApplyWheelTorque(-SpeedWheel * (interactable.value * 2));
 			}
 		}
 		else
@@ -46,7 +46,7 @@ public class WheelController : MonoBehaviour
 				if (wheelCollider.brakeTorque == 0f)
 				{
 					Debug.Log("SPIRACHKAAAA" + gameObject.name);
-					wheelCollider.brakeTorque += BreakForce;
+					wheelCollider.brakeTorque = BreakForce;
 				}
 			}
 			else
@@ -56,12 +56,18 @@ public class WheelController : MonoBehaviour
 			}
 		}
 		Debug.Log($"{interactable.isSelected} {gameObject.name}");
+		Debug.Log($"{wheelCollider.rpm} SKOROST {gameObject.name}");
 	}
 
 	private void ApplyWheelTorque(float torque)
 	{
 		Debug.Log($"Applying Torque {torque}");
-		wheelCollider.motorTorque += torque;
+		if (torque>300)
+		{
+			wheelCollider.motorTorque = 300;
+			return;
+		}
+		wheelCollider.motorTorque = torque;
 	}
 }
 
