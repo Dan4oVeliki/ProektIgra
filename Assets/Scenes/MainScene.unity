@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4593706, g: 0.6312395, b: 0.8594985, a: 1}
+  m_IndirectSpecularColor: {r: 0.45933008, g: 0.6312534, b: 0.8592557, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1253,7 +1253,7 @@ Transform:
   m_GameObject: {fileID: 192911548}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.12, z: 0}
+  m_LocalPosition: {x: -0, y: 0.135, z: -0}
   m_LocalScale: {x: 0.15999998, y: 0.07, z: -0.16}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1279,7 +1279,7 @@ SphereCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Radius: 1.15
-  m_Center: {x: 0, y: 0, z: -0.001}
+  m_Center: {x: 0, y: 1.81, z: -0.001}
 --- !u!54 &192911551
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2529,17 +2529,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 02bd0ff53b4b8cc4ebe55130166fd40e,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.006
+      value: -0.002
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 02bd0ff53b4b8cc4ebe55130166fd40e,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.458
+      value: 0.247
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 02bd0ff53b4b8cc4ebe55130166fd40e,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.013
+      value: -0.004
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 02bd0ff53b4b8cc4ebe55130166fd40e,
         type: 3}
@@ -2757,12 +2757,12 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 02bd0ff53b4b8cc4ebe55130166fd40e,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.44
+      value: 0.26
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 02bd0ff53b4b8cc4ebe55130166fd40e,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.013
+      value: 0.001
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 02bd0ff53b4b8cc4ebe55130166fd40e,
         type: 3}
@@ -3853,7 +3853,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 603146282}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.3322304, z: -0, w: 0.94319826}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 21.63, y: -0.58, z: -42.98}
   m_LocalScale: {x: 0.82, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3869,7 +3869,7 @@ Transform:
   - {fileID: 821144534}
   - {fileID: 1759543042}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 38.808, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &603146284
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3878,8 +3878,8 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 603146282}
   serializedVersion: 4
-  m_Mass: 500
-  m_Drag: 0.2
+  m_Mass: 700
+  m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
@@ -3916,8 +3916,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.45, y: 1.0391281, z: 0.7601608}
-  m_Center: {x: 0.0000036099332, y: 1.3788328, z: 0.16178648}
+  m_Size: {x: 0.45, y: 1.0391281, z: 0.5864569}
+  m_Center: {x: 0.0000036162576, y: 1.3788328, z: 0.24863845}
 --- !u!1001 &629868736
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4816,9 +4816,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wheelCollider: {fileID: 693094284}
   SpeedWheel: 150
-  BreakForce: 50
+  BreakForce: 10
   interactable: {fileID: 982258707}
-  resetDuration: 3
+  resetDuration: 1
 --- !u!146 &693094284
 WheelCollider:
   m_ObjectHideFlags: 0
@@ -9435,9 +9435,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wheelCollider: {fileID: 1452249635}
   SpeedWheel: -150
-  BreakForce: 50
+  BreakForce: 10
   interactable: {fileID: 3344241857735762325}
-  resetDuration: 3
+  resetDuration: 1
 --- !u!146 &1452249635
 WheelCollider:
   m_ObjectHideFlags: 0
@@ -13705,6 +13705,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Radius
       value: 1.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 6037030190244239248, guid: 04052c76cd8138f47bfc66ae8d456707,
+        type: 3}
+      propertyPath: m_Center.y
+      value: 1.81
       objectReference: {fileID: 0}
     - target: {fileID: 6825494342012569085, guid: 04052c76cd8138f47bfc66ae8d456707,
         type: 3}
