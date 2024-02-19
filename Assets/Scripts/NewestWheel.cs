@@ -5,8 +5,9 @@ using UnityEngine.XR.Interaction.Toolkit;
 public class NewestWheel : XRBaseInteractable
 {
     [SerializeField] private Transform wheelTransform;
-	[SerializeField] private Rigidbody attachedRigidbody; // Reference to the Rigidbody attached to the object
+	[SerializeField] private Rigidbody attachedRigidbody;
 	[SerializeField] float ForcePush;
+	public Transform PushFromHere;
 	public UnityEvent<float> OnWheelRotated;
 
 	private float currentAngle = 0.0f;
@@ -59,16 +60,19 @@ public class NewestWheel : XRBaseInteractable
 			angularVelocity *= dampingFactor;
 		}
 
-		// Apply a force to the attached Rigidbody to move the object forward
-		Vector3 forceDirection = -wheelTransform.right; // Use -wheelTransform.right if forward is not aligned with -x axis
-		Vector3 forwardForce = forceDirection * angularVelocity * Time.deltaTime * ForcePush;
+		// Calculate force direction based on PushFromHere position
+		Vector3 forceDirection = PushFromHere.position - wheelTransform.position;
+		forceDirection.Normalize();
 
-		attachedRigidbody.AddForce(forwardForce, ForceMode.Impulse);
+		// Apply a force to the attached Rigidbody to move the object forward
+		Vector3 forwardForce = forceDirection * angularVelocity * Time.deltaTime * ForcePush;
+		attachedRigidbody.AddForce(0f,0f,1f,ForceMode.Acceleration);
 
 		// Apply a torque to simulate the turning effect (optional)
-		float torque = angularVelocity * 0.1f; // You can adjust the torque factor
-		attachedRigidbody.AddTorque(transform.up * torque, ForceMode.Impulse);
+		float torque = angularVelocity * 0.1f;
+		attachedRigidbody.AddTorque(transform.up * torque);
 	}
+
 
 	private void ApplyAngularVelocity()
 	{
