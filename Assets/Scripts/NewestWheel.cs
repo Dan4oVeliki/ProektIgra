@@ -4,30 +4,37 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class NewestWheel : XRBaseInteractable
 {
-    [SerializeField] private Transform wheelTransform;
+	[SerializeField] private Transform wheelTransform;
 	[SerializeField] private Rigidbody attachedRigidbody;
-	[SerializeField] float ForcePush;
-	public Transform PushFromHere;
+	[SerializeField] private float movementForce = 10f; // Adjust this value as needed
+	[SerializeField] private float rotationForce = 5f; // Adjust this value as needed
+	[SerializeField] GameObject centerObject; // Reference to the center object
 	public UnityEvent<float> OnWheelRotated;
+
 
 	private float currentAngle = 0.0f;
 	private float angularVelocity = 0.0f;
-	private bool isSlowingDown = false;
-	private float dampingFactor = 0.95f;
+	private bool isRotating = false;
+	private float inertiaDampingFactor = 0.98f;
+
+	protected override void Awake()
+	{
+		base.Awake();
+	}
 
 	protected override void OnSelectEntered(SelectEnterEventArgs args)
 	{
 		base.OnSelectEntered(args);
 		currentAngle = FindWheelAngle();
 		angularVelocity = 0.0f;
-		isSlowingDown = false;
+		isRotating = true;
 	}
 
 	protected override void OnSelectExited(SelectExitEventArgs args)
 	{
 		base.OnSelectExited(args);
 		currentAngle = FindWheelAngle();
-		isSlowingDown = true;
+		isRotating = false;
 	}
 
 	public override void ProcessInteractable(XRInteractionUpdateOrder.UpdatePhase updatePhase)
@@ -36,10 +43,14 @@ public class NewestWheel : XRBaseInteractable
 
 		if (updatePhase == XRInteractionUpdateOrder.UpdatePhase.Dynamic)
 		{
-			if (isSelected)
+			if (isRotating)
+			{
 				RotateWheel();
+			}
 			else
-				ApplyAngularVelocity();
+			{
+				ApplyInertia();
+			}
 		}
 	}
 
@@ -52,32 +63,33 @@ public class NewestWheel : XRBaseInteractable
 
 		currentAngle = totalAngle;
 		OnWheelRotated?.Invoke(angleDifference);
-
 		angularVelocity = angleDifference / Time.deltaTime;
 
-		if (isSlowingDown)
-		{
-			angularVelocity *= dampingFactor;
-		}
+		// Calculate movement and rotation forces based on wheel rotation
+		Vector3 movementForceVector = centerObject.transform.forward * movementForce * angularVelocity;
+		Vector3 rotationForceVector = transform.up * rotationForce * angleDifference;
 
-		// Calculate force direction based on PushFromHere position
-		Vector3 forceDirection = PushFromHere.position - wheelTransform.position;
-		forceDirection.Normalize();
+			// Apply forces to simulate friction and move rotation
+			attachedRigidbody.AddForce(movementForceVector, ForceMode.Force);
 
-		// Apply a force to the attached Rigidbody to move the object forward
-		Vector3 forwardForce = forceDirection * angularVelocity * Time.deltaTime * ForcePush;
-		attachedRigidbody.AddForce(0f,0f,1f,ForceMode.Acceleration);
+			// Calculate torque based on the rotation force
+			Vector3 torque = rotationForceVector;
 
-		// Apply a torque to simulate the turning effect (optional)
-		float torque = angularVelocity * 0.1f;
-		attachedRigidbody.AddTorque(transform.up * torque);
+			// Apply torque to simulate grip
+			attachedRigidbody.AddTorque(torque, ForceMode.Force);
+
+			// Calculate the desired rotation based on the wheel's rotation
+			Quaternion desiredRotation = Quaternion.Euler(wheelTransform.eulerAngles);
+
+			// Use MoveRotation to directly set the rotation
+			attachedRigidbody.MoveRotation(desiredRotation);
 	}
 
 
-	private void ApplyAngularVelocity()
+	private void ApplyInertia()
 	{
+		angularVelocity *= inertiaDampingFactor;
 		wheelTransform.Rotate(transform.forward, -angularVelocity * Time.deltaTime, Space.World);
-		angularVelocity *= 0.98f;
 	}
 
 	private float FindWheelAngle()
