@@ -68,4 +68,8 @@ public class GameMenuCOntroller : MonoBehaviour
 
 		IsGamePaused = !IsGamePaused;
 	}
+	public void QuitGame()
+	{
+		Application.Quit();
+	}
 }

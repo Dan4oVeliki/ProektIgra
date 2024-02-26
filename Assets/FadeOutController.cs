@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class FadeOutController : MonoBehaviour
 {
@@ -11,7 +12,8 @@ public class FadeOutController : MonoBehaviour
     void Start()
     {
         rend = GetComponent<Renderer>();
-        if (FadeOnStart) FadeIn();
+        if (FadeOnStart) { FadeIn(); }
+        else FadeOut();
     }
 
     public void FadeIn()
@@ -42,7 +44,8 @@ public class FadeOutController : MonoBehaviour
 		Color newColor2 = fadeColor;
         newColor2.a = alphaout;
 
-		rend.material.SetColor("_Color", newColor2); 
+		rend.material.SetColor("_Color", newColor2);
+		transform.position = new Vector3(transform.position.x, transform.position.y, -0.5f);
 	}
 
 }
