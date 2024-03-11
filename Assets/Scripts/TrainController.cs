@@ -11,6 +11,7 @@ public class TrainController : MonoBehaviour
     public bool StartTrain;
     public BoxCollider col;
 	public GameObject triggerObject;
+    public bool PushedButton = false;
     void Start()
     {
         
@@ -19,14 +20,13 @@ public class TrainController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (cam.transform.rotation.eulerAngles.y > 150 && cam.transform.rotation.eulerAngles.y < 210)
+        if (!PushedButton&&cam.transform.rotation.eulerAngles.y > 150 && cam.transform.rotation.eulerAngles.y < 210)
         {
             StartTrain = true;
         }
-        if (StartTrain)
+        if (StartTrain&&!PushedButton)
         {
           rb.AddForce(0f, 0f, speedTrain, ForceMode.Acceleration);
-
         }
         Debug.Log(cam.transform.rotation.eulerAngles.y);
     }
@@ -39,6 +39,10 @@ public class TrainController : MonoBehaviour
 			ResetScene();
 		}
 	}
+    public void ForeverStop()
+    {
+        PushedButton = true;
+    }
 
 	private void ResetScene()
 	{
