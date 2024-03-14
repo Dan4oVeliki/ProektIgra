@@ -9,7 +9,6 @@ public class TrainController : MonoBehaviour
     public float speedTrain;
     public Camera cam;
     public bool StartTrain;
-    public BoxCollider col;
 	public GameObject triggerObject;
     public bool PushedButton = false;
     void Start()
@@ -28,28 +27,25 @@ public class TrainController : MonoBehaviour
         {
           rb.AddForce(0f, 0f, speedTrain, ForceMode.Acceleration);
         }
-        Debug.Log(cam.transform.rotation.eulerAngles.y);
     }
-	private void OnTriggerEnter(Collider other)
-	{
-		// Check if the collider has collided with the specific game object
-		if (other.gameObject == triggerObject)
-		{
-			// Reset the scene
-			ResetScene();
-		}
-	}
+
     public void ForeverStop()
     {
         PushedButton = true;
     }
 
-	private void ResetScene()
+	private void OnTriggerEnter(Collider other)
 	{
-		// Get the current scene index
-		int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-
-		// Reload the current scene
-		SceneManager.LoadScene(currentSceneIndex);
+        if (other.tag == "Kolichka")
+        {
+            other.transform.SetParent(transform);
+        }
+	}
+	private void OnTriggerExit(Collider other)
+	{
+		if (other.tag == "Kolichka")
+		{
+			other.transform.SetParent(null);
+		}
 	}
 }

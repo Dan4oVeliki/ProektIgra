@@ -754,7 +754,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnPress.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 311752895}
+      objectReference: {fileID: 0}
     - target: {fileID: 2304902795837412248, guid: da3b468b35b58334693dfcd04f6e06a7,
         type: 3}
       propertyPath: m_OnPress.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
@@ -1517,15 +1517,11 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: dac90c3ce42aacb4e90c6b393c15b589,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 311752896}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: dac90c3ce42aacb4e90c6b393c15b589,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 311752895}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: dac90c3ce42aacb4e90c6b393c15b589,
-        type: 3}
-      insertIndex: -1
       addedObject: {fileID: 311752897}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: dac90c3ce42aacb4e90c6b393c15b589,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 311752898}
   m_SourcePrefab: {fileID: 100100000, guid: dac90c3ce42aacb4e90c6b393c15b589, type: 3}
 --- !u!1 &79227400
 GameObject:
@@ -3952,52 +3948,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 70509265}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &311752895
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 311752893}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed208c46ac15847489c1d3f87ca2f142, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rb: {fileID: 311752896}
-  speedTrain: 30
-  cam: {fileID: 1277858766}
-  StartTrain: 0
-  col: {fileID: 311752897}
-  triggerObject: {fileID: 306355977}
-  PushedButton: 0
---- !u!54 &311752896
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 311752893}
-  serializedVersion: 4
-  m_Mass: 10000
-  m_Drag: 3
-  m_AngularDrag: 2
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 54
-  m_CollisionDetection: 0
 --- !u!65 &311752897
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4019,6 +3969,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 5.49, y: 6.85, z: 1}
   m_Center: {x: 0, y: 1.23, z: 0}
+--- !u!114 &311752898
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 311752893}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59763271bc2c1824788c5da248694a25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  triggerObject: {fileID: 306355977}
 --- !u!1001 &318305871
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8506,7 +8469,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.44999996, y: 0.751, z: 0.6}
+  m_ConnectedAnchor: {x: 0.44999996, y: 0.751, z: 0.5999985}
   serializedVersion: 3
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -13231,7 +13194,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.5709999, y: 1.0240002, z: -0.0000000037252903}
+  m_ConnectedAnchor: {x: -0.57100004, y: 1.0240002, z: 0}
   serializedVersion: 3
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -22188,7 +22151,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.44999996, y: 0.751, z: 0.6}
+  m_ConnectedAnchor: {x: -0.44999996, y: 0.751, z: 0.5999985}
   serializedVersion: 3
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -24640,6 +24603,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1902386664}
+  - component: {fileID: 1902386667}
+  - component: {fileID: 1902386666}
+  - component: {fileID: 1902386665}
   m_Layer: 0
   m_Name: Vlak
   m_TagString: Untagged
@@ -24663,6 +24629,72 @@ Transform:
   - {fileID: 311752894}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1902386665
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1902386663}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.71, y: 0.99, z: 12.52}
+  m_Center: {x: 0, y: 0, z: -13.33}
+--- !u!54 &1902386666
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1902386663}
+  serializedVersion: 4
+  m_Mass: 10000
+  m_Drag: 3
+  m_AngularDrag: 2
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 54
+  m_CollisionDetection: 0
+--- !u!114 &1902386667
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1902386663}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed208c46ac15847489c1d3f87ca2f142, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 1902386666}
+  speedTrain: 30
+  cam: {fileID: 1277858766}
+  StartTrain: 0
+  triggerObject: {fileID: 306355977}
+  PushedButton: 0
 --- !u!1001 &1908605128
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -25461,7 +25493,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.571, y: 1.0240002, z: -0.0000000037252903}
+  m_ConnectedAnchor: {x: 0.571, y: 1.0240002, z: 0}
   serializedVersion: 3
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
