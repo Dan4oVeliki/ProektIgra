@@ -10,6 +10,7 @@ namespace UnityEngine.XR.Content.Interaction
     /// </summary>
     public class XRPushButton : XRBaseInteractable
     {
+
         class PressInfo
         {
             internal IXRHoverInteractor m_Interactor;
@@ -133,7 +134,11 @@ namespace UnityEngine.XR.Content.Interaction
             if (m_Button != null)
                 m_BaseButtonPosition = m_Button.position;
         }
-
+        public void Initialize()
+        {
+			if (m_Button != null)
+				m_BaseButtonPosition = m_Button.position;
+		}
         protected override void OnEnable()
         {
             base.OnEnable();
