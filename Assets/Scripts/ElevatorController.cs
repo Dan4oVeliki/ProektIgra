@@ -22,11 +22,6 @@ public class ElevatorController : MonoBehaviour
 	public bool buttonActivate;
 
 	public XRPushButton buttonPress;
-
-	public Transform LDoor;
-	public Transform RDoor;
-	public float distanceOpened;
-	public float SpeedDoors;
 	void Start()
 	{
 		TargetNextWaypoint();
@@ -61,12 +56,18 @@ public class ElevatorController : MonoBehaviour
 
 		buttonActivate= false;
 	}
-	public void OpenDoors()
+	public void GoToParter()
 	{
-		Vector3 Lopened = LDoor.position + Vector3.left * distanceOpened;
-		Vector3 Ropened = RDoor.position + Vector3.left * (distanceOpened+2);
-		LDoor.localPosition = Vector3.Lerp(LDoor.localPosition, Lopened, Time.deltaTime * SpeedDoors);
-		RDoor.localPosition = Vector3.Lerp(RDoor.localPosition, Ropened, Time.deltaTime * SpeedDoors);
+		_previousWaypoint = _waypointPath.GetWaypoint(_targetWaypointIndex);
+		_targetWaypointIndex = 0;
+		_targetWaypoint = _waypointPath.GetWaypoint(0);
+
+		_elapsedTime = 0;
+
+		float distanceToWaypoint = Vector3.Distance(_previousWaypoint.position, _targetWaypoint.position);
+		_timeToWaypoint = distanceToWaypoint / _speed;
+
+		buttonActivate = false;
 	}
 	public void ClickButton()
 	{

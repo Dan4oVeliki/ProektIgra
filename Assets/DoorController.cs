@@ -2,57 +2,65 @@ using UnityEngine;
 
 public class DoorController : MonoBehaviour
 {
-	public Transform leftDoor;
-	public Transform rightDoor;
+	public Vector3 endPos;
+	public float speed;
 
-	public float slideDistance = 2f;
-	public float slideSpeed = 5f;
-
-	private Vector3 leftDoorClosedPosition;
-	private Vector3 rightDoorClosedPosition;
-
-	private Vector3 leftDoorOpenPosition;
-	private Vector3 rightDoorOpenPosition;
-	[SerializeField]
-	private bool isOpen = false;
+	private bool opening;
+	private bool moving;
+	private Vector3 startPos;
+	private float delay;
 
 	void Start()
 	{
-		// Store initial positions
-		leftDoorClosedPosition = leftDoor.localPosition;
-		rightDoorClosedPosition = rightDoor.localPosition;
-
-		// Calculate open positions
-		leftDoorOpenPosition = leftDoorClosedPosition + Vector3.left * slideDistance;
-		rightDoorOpenPosition = rightDoorClosedPosition + Vector3.right * slideDistance;
+		startPos = transform.localPosition;
 	}
 
 	void Update()
 	{
 		// If isOpen is true, open the doors
-		if (isOpen)
+		if (moving)
 		{
-			OpenDoors();
+			if (opening)
+			{
+				OpenDoors(endPos);
+			}
+			else
+			{
+				OpenDoors(startPos);
+			}
+		}
+		Debug.Log($"Moving {moving}, Opening: {opening}, Delay {delay}");
+	}
+
+	void OpenDoors(Vector3 goalPos)
+	{
+		float dist = Vector3.Distance(transform.localPosition, goalPos);
+		if (dist > .1f) 
+		{
+			transform.localPosition = Vector3.Lerp(transform.localPosition, goalPos, speed*Time.deltaTime);
 		}
 		else
 		{
-			CloseDoors();
+			if (opening)
+			{
+				delay += Time.deltaTime;
+				if (delay-speed>9f)
+				{
+					opening = false;
+				}
+			}
+			else 
+			{ 
+				moving= false;
+				opening= true;
+			}
 		}
-	}
+		Debug.Log($"Distance {dist}");
 
-	void OpenDoors()
-	{
-		leftDoor.localPosition = Vector3.Lerp(leftDoor.localPosition, leftDoorOpenPosition, Time.deltaTime * slideSpeed);
-		rightDoor.localPosition = Vector3.Lerp(rightDoor.localPosition, rightDoorOpenPosition, Time.deltaTime * slideSpeed);
 	}
-
-	void CloseDoors()
+	public bool Moving
 	{
-		leftDoor.localPosition = Vector3.Lerp(leftDoor.localPosition, leftDoorClosedPosition, Time.deltaTime * slideSpeed);
-		rightDoor.localPosition = Vector3.Lerp(rightDoor.localPosition, rightDoorClosedPosition, Time.deltaTime * slideSpeed);
-	}
-	public void ToggleDoors()
-	{
-		isOpen = !isOpen;
+		get { return moving; }
+		set { moving = value; }
 	}
 }

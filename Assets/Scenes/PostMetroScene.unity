@@ -564,11 +564,16 @@ PrefabInstance:
     - target: {fileID: 2304902795837412248, guid: da3b468b35b58334693dfcd04f6e06a7,
         type: 3}
       propertyPath: m_OnPress.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2304902795837412248, guid: da3b468b35b58334693dfcd04f6e06a7,
         type: 3}
       propertyPath: m_OnPress.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2304902795837412248, guid: da3b468b35b58334693dfcd04f6e06a7,
+        type: 3}
+      propertyPath: m_OnPress.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2304902795837412248, guid: da3b468b35b58334693dfcd04f6e06a7,
@@ -578,13 +583,28 @@ PrefabInstance:
       objectReference: {fileID: 43460056}
     - target: {fileID: 2304902795837412248, guid: da3b468b35b58334693dfcd04f6e06a7,
         type: 3}
+      propertyPath: m_OnPress.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1096236219}
+    - target: {fileID: 2304902795837412248, guid: da3b468b35b58334693dfcd04f6e06a7,
+        type: 3}
       propertyPath: m_OnPress.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2304902795837412248, guid: da3b468b35b58334693dfcd04f6e06a7,
         type: 3}
+      propertyPath: m_OnPress.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2304902795837412248, guid: da3b468b35b58334693dfcd04f6e06a7,
+        type: 3}
       propertyPath: m_OnPress.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ClickButton
+      value: GoToParter
+      objectReference: {fileID: 0}
+    - target: {fileID: 2304902795837412248, guid: da3b468b35b58334693dfcd04f6e06a7,
+        type: 3}
+      propertyPath: m_OnPress.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: OpenDoors
       objectReference: {fileID: 0}
     - target: {fileID: 2304902795837412248, guid: da3b468b35b58334693dfcd04f6e06a7,
         type: 3}
@@ -593,7 +613,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2304902795837412248, guid: da3b468b35b58334693dfcd04f6e06a7,
         type: 3}
+      propertyPath: m_OnPress.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: CheckDoorsOpen, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2304902795837412248, guid: da3b468b35b58334693dfcd04f6e06a7,
+        type: 3}
       propertyPath: m_OnPress.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 2304902795837412248, guid: da3b468b35b58334693dfcd04f6e06a7,
+        type: 3}
+      propertyPath: m_OnPress.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 3130556819844574636, guid: da3b468b35b58334693dfcd04f6e06a7,
@@ -609,7 +639,7 @@ PrefabInstance:
     - target: {fileID: 3130556819844574636, guid: da3b468b35b58334693dfcd04f6e06a7,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -2.701
+      value: -3.65
       objectReference: {fileID: 0}
     - target: {fileID: 3130556819844574636, guid: da3b468b35b58334693dfcd04f6e06a7,
         type: 3}
@@ -691,10 +721,6 @@ MonoBehaviour:
   _speed: 1
   buttonActivate: 0
   buttonPress: {fileID: 2067671343}
-  LDoor: {fileID: 0}
-  RDoor: {fileID: 0}
-  distanceOpened: 0
-  SpeedDoors: 0
 --- !u!4 &43460057
 Transform:
   m_ObjectHideFlags: 0
@@ -12389,6 +12415,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1096236218}
+  - component: {fileID: 1096236219}
   m_Layer: 0
   m_Name: Vrati
   m_TagString: Untagged
@@ -12413,6 +12440,21 @@ Transform:
   - {fileID: 1918302427}
   m_Father: {fileID: 43460057}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1096236219
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1096236217}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e4f33dacdac8ff408c24e6fe5cfef06, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LDoor: {fileID: 1486588714}
+  RDoor: {fileID: 1918302428}
+  AdminOn: 0
 --- !u!1 &1103630079
 GameObject:
   m_ObjectHideFlags: 0
@@ -15363,11 +15405,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1897223bdea67e46b9f07c627c16238, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leftDoor: {fileID: 1486588713}
-  rightDoor: {fileID: 0}
-  slideDistance: 2
-  slideSpeed: 5
-  isOpen: 0
+  endPos: {x: 1.87, y: 3.174, z: -3}
+  speed: 0.3333333
 --- !u!65 &1486588715
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -19691,11 +19730,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1897223bdea67e46b9f07c627c16238, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leftDoor: {fileID: 1918302427}
-  rightDoor: {fileID: 0}
-  slideDistance: 3
-  slideSpeed: 2
-  isOpen: 0
+  endPos: {x: 2, y: 3.174, z: -3}
+  speed: 0.4333333
 --- !u!65 &1918302429
 BoxCollider:
   m_ObjectHideFlags: 0
