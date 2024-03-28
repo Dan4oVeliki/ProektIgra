@@ -10,6 +10,7 @@ public class DoorController : MonoBehaviour
 	private Vector3 startPos;
 	private float delay;
 
+	public bool closed;
 	void Start()
 	{
 		startPos = transform.localPosition;
@@ -29,7 +30,7 @@ public class DoorController : MonoBehaviour
 				OpenDoors(startPos);
 			}
 		}
-		Debug.Log($"Moving {moving}, Opening: {opening}, Delay {delay}");
+		Debug.Log($"door cod{closed}");
 	}
 
 	void OpenDoors(Vector3 goalPos)
@@ -48,14 +49,18 @@ public class DoorController : MonoBehaviour
 				{
 					opening = false;
 				}
+				closed = false;
 			}
 			else 
 			{ 
 				moving= false;
 				opening= true;
+				if (goalPos == startPos)
+				{
+					closed = true;
+				}
 			}
 		}
-		Debug.Log($"Distance {dist}");
 
 	}
 	public bool Moving

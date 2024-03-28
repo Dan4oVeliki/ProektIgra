@@ -20,8 +20,13 @@ public class ElevatorController : MonoBehaviour
 	private float _elapsedTime;
 
 	public bool buttonActivate;
-
+	private bool isMoving;
 	public XRPushButton buttonPress;
+
+	public List<DoorController> Doors;
+	public bool DoorsOpenButton;
+	public bool isOpen;
+
 	void Start()
 	{
 		TargetNextWaypoint();
@@ -29,20 +34,53 @@ public class ElevatorController : MonoBehaviour
 
 	void FixedUpdate()
 	{
+		Debug.Log($"{isOpen}");
 		_elapsedTime += Time.deltaTime;
-
+		foreach (var item in Doors)
+		{
+			if (item.closed)
+			{
+				isOpen = false;
+			}
+		}
 		float elapsedPercentage = _elapsedTime / _timeToWaypoint;
-		elapsedPercentage = Mathf.SmoothStep(0, 1, elapsedPercentage);
-		transform.position = Vector3.Lerp(_previousWaypoint.position, _targetWaypoint.position, elapsedPercentage);
-		transform.rotation = Quaternion.Lerp(_previousWaypoint.rotation, _targetWaypoint.rotation, elapsedPercentage);
+		if (isOpen)
+		{
+			elapsedPercentage = Mathf.SmoothStep(0, 1, elapsedPercentage);
+			transform.position = Vector3.Lerp(_previousWaypoint.position, _targetWaypoint.position, elapsedPercentage);
+			transform.rotation = Quaternion.Lerp(_previousWaypoint.rotation, _targetWaypoint.rotation, elapsedPercentage);
+		}
 		buttonPress.Initialize();
 
-		if (elapsedPercentage >= 1&& buttonActivate)
+		if (transform.position == new Vector3(-28.19328f, 9.00f, -4.95f) || transform.position == new Vector3(-28.19328f, -0.32f, -4.95f))
+		{
+			isMoving = false;
+
+		}
+		else isMoving = true;
+		if (elapsedPercentage >= 1 && buttonActivate && !isMoving)
 		{
 			TargetNextWaypoint();
 		}
-	}
+		else if (DoorsOpenButton && !isMoving)
+		{
+			foreach (var item in Doors)
+			{
+				item.Moving = true;
+				DoorsOpenButton = false;
+			}
+			isOpen = true;
+		}
 
+		if (transform.position == new Vector3(-28.19328f, 9.00f, -4.95f) || transform.position == new Vector3(-28.19328f, -0.32f, -4.95f))
+		{
+			buttonActivate = false;
+		}
+	}
+	public void ButtonDoors()
+	{
+		DoorsOpenButton = true;
+	}
 	private void TargetNextWaypoint()
 	{
 		_previousWaypoint = _waypointPath.GetWaypoint(_targetWaypointIndex);
@@ -53,25 +91,25 @@ public class ElevatorController : MonoBehaviour
 
 		float distanceToWaypoint = Vector3.Distance(_previousWaypoint.position, _targetWaypoint.position);
 		_timeToWaypoint = distanceToWaypoint / _speed;
-
-		buttonActivate= false;
 	}
 	public void GoToParter()
 	{
-		_previousWaypoint = _waypointPath.GetWaypoint(_targetWaypointIndex);
-		_targetWaypointIndex = 0;
-		_targetWaypoint = _waypointPath.GetWaypoint(0);
+		if (!isMoving)
+		{
+			_previousWaypoint = _waypointPath.GetWaypoint(_targetWaypointIndex);
+			_targetWaypointIndex = 0;
+			_targetWaypoint = _waypointPath.GetWaypoint(0);
 
-		_elapsedTime = 0;
+			_elapsedTime = 0;
 
-		float distanceToWaypoint = Vector3.Distance(_previousWaypoint.position, _targetWaypoint.position);
-		_timeToWaypoint = distanceToWaypoint / _speed;
-
-		buttonActivate = false;
+			float distanceToWaypoint = Vector3.Distance(_previousWaypoint.position, _targetWaypoint.position);
+			_timeToWaypoint = distanceToWaypoint / _speed;
+		}
 	}
 	public void ClickButton()
 	{
 		buttonActivate = true;
+
 	}
 
 	private void OnTriggerEnter(Collider other)
