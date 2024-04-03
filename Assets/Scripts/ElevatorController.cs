@@ -26,6 +26,7 @@ public class ElevatorController : MonoBehaviour
 	public List<DoorController> Doors;
 	public bool DoorsOpenButton;
 	public bool isOpen;
+	public bool ReachedFLoor;
 
 	void Start()
 	{
@@ -34,7 +35,7 @@ public class ElevatorController : MonoBehaviour
 
 	void FixedUpdate()
 	{
-		Debug.Log($"{isOpen}");
+		Debug.Log($"{isOpen} {transform.position} MOVING {isMoving}");
 		_elapsedTime += Time.deltaTime;
 		foreach (var item in Doors)
 		{
@@ -42,9 +43,10 @@ public class ElevatorController : MonoBehaviour
 			{
 				isOpen = false;
 			}
+			else isOpen = true;
 		}
 		float elapsedPercentage = _elapsedTime / _timeToWaypoint;
-		if (isOpen)
+		if (!isOpen)
 		{
 			elapsedPercentage = Mathf.SmoothStep(0, 1, elapsedPercentage);
 			transform.position = Vector3.Lerp(_previousWaypoint.position, _targetWaypoint.position, elapsedPercentage);
@@ -52,12 +54,12 @@ public class ElevatorController : MonoBehaviour
 		}
 		buttonPress.Initialize();
 
-		if (transform.position == new Vector3(-28.19328f, 9.00f, -4.95f) || transform.position == new Vector3(-28.19328f, -0.32f, -4.95f))
+		if (transform.position == new Vector3(-28.19328f, 9.3f, -4.95f) || transform.position == new Vector3(-28.19328f, -0.32f, -4.95f))
 		{
 			isMoving = false;
 
 		}
-		else isMoving = true;
+		else {isMoving = true; ReachedFLoor = false; }
 		if (elapsedPercentage >= 1 && buttonActivate && !isMoving)
 		{
 			TargetNextWaypoint();
@@ -71,10 +73,14 @@ public class ElevatorController : MonoBehaviour
 			}
 			isOpen = true;
 		}
-
-		if (transform.position == new Vector3(-28.19328f, 9.00f, -4.95f) || transform.position == new Vector3(-28.19328f, -0.32f, -4.95f))
+		if (transform.position == new Vector3(-28.19328f, 9.3f, -4.95f) || transform.position == new Vector3(-28.19328f, -0.32f, -4.95f))
 		{
 			buttonActivate = false;
+			if (!ReachedFLoor)
+			{
+				DoorsOpenButton= true;
+			}
+			ReachedFLoor = true;
 		}
 	}
 	public void ButtonDoors()
@@ -109,7 +115,6 @@ public class ElevatorController : MonoBehaviour
 	public void ClickButton()
 	{
 		buttonActivate = true;
-
 	}
 
 	private void OnTriggerEnter(Collider other)
