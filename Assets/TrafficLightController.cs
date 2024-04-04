@@ -4,78 +4,90 @@ using UnityEngine;
 
 public class TrafficLightController : MonoBehaviour
 {
-	public GameObject[] side1Lights; // Lights on side 1
-	public GameObject[] side2Lights; // Lights on side 2
+    public float greenTime = 5f;
+	public float yellowTime = 2f;
+	public float redTime = 5f;
 
-	public float greenDuration = 5f; // Duration for green light
-	public float yellowDuration = 2f; // Duration for yellow light
-	public float redDuration = 5f; // Duration for red light
+	private Light[] lights;
+	private int currentLightIndex = 0;
+	private float timer = 0f;
 
-	private bool isSide1Green = true; // Flag to track which side is green
-
-	private void Start()
+	void Start()
 	{
-		// Start the traffic light cycle
-		StartCoroutine(TrafficLightCycle());
+		// Get all child lights
+		lights = GetComponentsInChildren<Light>();
+
+		// Start with green light
+		SwitchToGreenLight();
 	}
 
-	private IEnumerator TrafficLightCycle()
+	void Update()
 	{
-		while (true)
+		// Update the timer
+		timer += Time.deltaTime;
+
+		// Check if it's time to switch lights
+		if (timer >= GetCurrentLightDuration())
 		{
-			if (isSide1Green)
-			{
-				SetSide1Lights(true, false, false); // Set side 1 to green
-				yield return new WaitForSeconds(greenDuration);
-
-				SetSide1Lights(false, true, false); // Set side 1 to yellow
-				yield return new WaitForSeconds(yellowDuration);
-
-				SetSide1Lights(false, false, true); // Set side 1 to red
-				yield return new WaitForSeconds(redDuration);
-			}
-			else
-			{
-				SetSide2Lights(true, false, false); // Set side 2 to green
-				yield return new WaitForSeconds(greenDuration);
-
-				SetSide2Lights(false, true, false); // Set side 2 to yellow
-				yield return new WaitForSeconds(yellowDuration);
-
-				SetSide2Lights(false, false, true); // Set side 2 to red
-				yield return new WaitForSeconds(redDuration);
-			}
-
-			// Toggle the flag to switch sides
-			isSide1Green = !isSide1Green;
+			SwitchToNextLight();
+			timer = 0f; // Reset the timer
 		}
 	}
 
-	public void SetSide1Lights(bool red, bool yellow, bool green)
+	float GetCurrentLightDuration()
 	{
-		SetLights(side1Lights, red, yellow, green);
-	}
-
-	public void SetSide2Lights(bool red, bool yellow, bool green)
-	{
-		SetLights(side2Lights, red, yellow, green);
-	}
-
-	private void SetLights(GameObject[] lights, bool red, bool yellow, bool green)
-	{
-		foreach (GameObject light in lights)
+		switch (currentLightIndex)
 		{
-			if (light != null)
-			{
-				Light lightComponent = light.GetComponent<Light>();
+			case 0: // Green light
+				return greenTime;
+			case 1: // Yellow light
+				return yellowTime;
+			case 2: // Red light
+				return redTime;
+			default:
+				return 0f;
+		}
+	}
 
-				if (light.name.Contains("Red"))
-					lightComponent.enabled = red;
-				else if (light.name.Contains("Yellow"))
-					lightComponent.enabled = yellow;
-				else if (light.name.Contains("Green"))
-					lightComponent.enabled = green;
-			}
+	void SwitchToGreenLight()
+	{
+		currentLightIndex = 0;
+		lights[0].enabled = true;
+		lights[1].enabled = false;
+		lights[2].enabled = false;
+	}
+
+	void SwitchToYellowLight()
+	{
+		currentLightIndex = 1;
+		lights[0].enabled = false;
+		lights[1].enabled = true;
+		lights[2].enabled = false;
+	}
+
+	void SwitchToRedLight()
+	{
+		currentLightIndex = 2;
+		lights[0].enabled = false;
+		lights[1].enabled = false;
+		lights[2].enabled = true;
+	}
+
+	void SwitchToNextLight()
+	{
+		switch (currentLightIndex)
+		{
+			case 0: // Green light, switch to yellow
+				SwitchToYellowLight();
+				break;
+			case 1: // Yellow light, switch to red
+				SwitchToRedLight();
+				break;
+			case 2: // Red light, switch to green
+				SwitchToGreenLight();
+				break;
+			default:
+				break;
 		}
 	}
 }
