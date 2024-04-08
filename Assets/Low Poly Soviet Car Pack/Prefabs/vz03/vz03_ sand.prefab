@@ -342,6 +342,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4712512036555756}
   - component: {fileID: 4653426461215179184}
+  - component: {fileID: 1817977180480652374}
   m_Layer: 0
   m_Name: vz03_ sand
   m_TagString: Untagged
@@ -381,6 +382,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c9249750aca176429d9d626817701bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  trafficLight: {fileID: 0}
+--- !u!65 &1817977180480652374
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1410421837022216}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.77, y: 1, z: 4.3}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1716839214131132
 GameObject:
   m_ObjectHideFlags: 0

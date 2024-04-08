@@ -1,14 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.SearchService;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CarMovementController : MonoBehaviour
 {
 	private float moveSpeed = 15f;
-
 	private Transform[] waypoints;
 	private int currentWaypointIndex = 0;
-
+	private bool stopMovement = false;
+	public TrafficLightController trafficLight;
 	void Update()
 	{
 		if (waypoints == null || waypoints.Length == 0)
@@ -16,8 +18,12 @@ public class CarMovementController : MonoBehaviour
 			Debug.LogWarning("No waypoints assigned to car movement!");
 			return;
 		}
-
-		MoveTowardsWaypoint();
+		Debug.Log($"is red {stopMovement}");
+		stopMovement = trafficLight.isRed;
+		if (!stopMovement || (waypoints[currentWaypointIndex].name.StartsWith("stop_")))
+		{
+			MoveTowardsWaypoint();
+		}
 	}
 
 	void MoveTowardsWaypoint()
@@ -55,5 +61,25 @@ public class CarMovementController : MonoBehaviour
 		waypoints = newWaypoints;
 		currentWaypointIndex = 0;
 		MoveTowardsWaypoint();
+	}
+
+	public void SetStopMovement(bool stop)
+	{
+		if (trafficLight.isRed)
+		{
+			stopMovement = stop;
+		}
+	}
+	public void AttachTrafficLightController(TrafficLightController trafficLights)
+	{
+		trafficLight = trafficLights; // Assign TrafficLightController reference
+	}
+	public void OnTriggerEnter(Collider other)
+	{
+		if (other.tag=="Kolichka")
+		{
+			UnityEngine.SceneManagement.Scene scene = SceneManager.GetActiveScene();
+			SceneManager.LoadScene(scene.name);
+		}
 	}
 }

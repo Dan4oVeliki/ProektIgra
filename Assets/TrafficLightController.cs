@@ -4,33 +4,43 @@ using UnityEngine;
 
 public class TrafficLightController : MonoBehaviour
 {
-    public float greenTime = 5f;
+	public float greenTime = 5f;
 	public float yellowTime = 2f;
 	public float redTime = 5f;
+	public float initialDelay = 0f; // New variable for initial delay
 
 	private Light[] lights;
 	private int currentLightIndex = 0;
 	private float timer = 0f;
+	private bool isInitialDelayComplete = false; // Flag to track if initial delay is complete
 
+	public bool isRed;
 	void Start()
 	{
-		// Get all child lights
 		lights = GetComponentsInChildren<Light>();
 
-		// Start with green light
-		SwitchToGreenLight();
+		// Start the initial delay coroutine
+		StartCoroutine(InitialDelayCoroutine());
+	}
+
+	IEnumerator InitialDelayCoroutine()
+	{
+		yield return new WaitForSeconds(initialDelay); // Wait for the specified initial delay
+		isInitialDelayComplete = true; // Set the flag to indicate that the initial delay is complete
+		SwitchToGreenLight(); // Start the regular light cycle
 	}
 
 	void Update()
 	{
-		// Update the timer
-		timer += Time.deltaTime;
+		if (!isInitialDelayComplete) // If initial delay is not complete, do not update the lights
+			return;
 
-		// Check if it's time to switch lights
+		timer += Time.deltaTime;
+		isRed = lights[2].enabled;
 		if (timer >= GetCurrentLightDuration())
 		{
 			SwitchToNextLight();
-			timer = 0f; // Reset the timer
+			timer = 0f;
 		}
 	}
 
@@ -38,11 +48,11 @@ public class TrafficLightController : MonoBehaviour
 	{
 		switch (currentLightIndex)
 		{
-			case 0: // Green light
+			case 0:
 				return greenTime;
-			case 1: // Yellow light
+			case 1:
 				return yellowTime;
-			case 2: // Red light
+			case 2:
 				return redTime;
 			default:
 				return 0f;

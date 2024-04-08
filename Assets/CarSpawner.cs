@@ -11,6 +11,8 @@ public class CarSpawner : MonoBehaviour
 
 	private float timer = 0f;
 
+	public TrafficLightController TrafficLight;
+
 	void Update()
 	{
 		timer += Time.deltaTime;
@@ -23,20 +25,15 @@ public class CarSpawner : MonoBehaviour
 
 	void SpawnCar()
 	{
-		// Select a random car prefab
 		GameObject selectedCarPrefab = carPrefabs[Random.Range(0, carPrefabs.Length)];
-
-		// Select a random spawn point
 		Transform spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
-
-		// Instantiate the car at the spawn point
 		GameObject newCar = Instantiate(selectedCarPrefab, spawnPoint.position, spawnPoint.rotation);
 
-		// Get the CarMovement component and set the waypoints
 		CarMovementController carMovement = newCar.GetComponent<CarMovementController>();
 		if (carMovement != null)
 		{
 			carMovement.SetWaypoints(waypoints);
+			carMovement.AttachTrafficLightController(TrafficLight); // Attach TrafficLightController
 		}
 	}
 }
