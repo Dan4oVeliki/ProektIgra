@@ -12,7 +12,6 @@ public class CarSpawner : MonoBehaviour
 	private float timer = 0f;
 
 	public TrafficLightController TrafficLight;
-
 	void Update()
 	{
 		timer += Time.deltaTime;
