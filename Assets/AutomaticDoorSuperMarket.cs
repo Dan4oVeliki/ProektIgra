@@ -12,6 +12,7 @@ public class AutomaticDoorSuperMarket : MonoBehaviour
     private bool opening = true;
     private Vector3 startPos;
     private float delay;
+    public float HowMuchTime;
     void Start()
     {
         startPos = transform.localPosition;
@@ -44,7 +45,7 @@ public class AutomaticDoorSuperMarket : MonoBehaviour
             if (opening)
             {
                 delay += Time.deltaTime;
-                if (delay>3.5f)
+                if (delay>HowMuchTime)
                 {
                     opening = false;
                 }
@@ -53,6 +54,7 @@ public class AutomaticDoorSuperMarket : MonoBehaviour
             {
                 moving = false;
                 opening= true;
+                delay = 0f;
             }
         }
     }

@@ -39,6 +39,7 @@ public class TrainController : MonoBehaviour
         if (other.tag == "Kolichka")
         {
             other.transform.SetParent(transform);
+            PushedButton = false;
         }
 	}
 	private void OnTriggerExit(Collider other)
