@@ -65,23 +65,17 @@ public class NewestWheel : XRBaseInteractable
 		OnWheelRotated?.Invoke(angleDifference);
 		angularVelocity = angleDifference / Time.deltaTime;
 
-		// Calculate movement and rotation forces based on wheel rotation
 		Vector3 movementForceVector = centerObject.transform.forward * movementForce * angularVelocity;
 		Vector3 rotationForceVector = transform.up * rotationForce * angleDifference;
 
-			// Apply forces to simulate friction and move rotation
 			attachedRigidbody.AddForce(movementForceVector, ForceMode.Force);
 
-			// Calculate torque based on the rotation force
 			Vector3 torque = rotationForceVector;
 
-			// Apply torque to simulate grip
 			attachedRigidbody.AddTorque(torque, ForceMode.Force);
 
-			// Calculate the desired rotation based on the wheel's rotation
 			Quaternion desiredRotation = Quaternion.Euler(wheelTransform.eulerAngles);
 
-			// Use MoveRotation to directly set the rotation
 			attachedRigidbody.MoveRotation(desiredRotation);
 	}
 

@@ -11,12 +11,7 @@ public class TrainController : MonoBehaviour
     public bool StartTrain;
 	public GameObject triggerObject;
     public bool PushedButton = false;
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
     void Update()
     {
         if (!PushedButton&&cam.transform.rotation.eulerAngles.y > 150 && cam.transform.rotation.eulerAngles.y < 210)

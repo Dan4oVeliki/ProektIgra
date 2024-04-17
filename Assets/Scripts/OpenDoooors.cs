@@ -12,12 +12,6 @@ public class OpenDoooors : MonoBehaviour
 		vsichkiVrati = new List<AutomaticDoorSuperMarket>();
 		vsichkiVrati.AddRange(vrati.GetComponentsInChildren<AutomaticDoorSuperMarket>());
 	}
-
-	// Update is called once per frame
-	void Update()
-    {
-        
-    }
     public void DoTheName()
     {
 		foreach (var item in vsichkiVrati)
