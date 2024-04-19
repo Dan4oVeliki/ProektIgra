@@ -18,7 +18,6 @@ public class CarMovementController : MonoBehaviour
 			Debug.LogWarning("No waypoints assigned to car movement!");
 			return;
 		}
-		Debug.Log($"is red {stopMovement}");
 		stopMovement = trafficLight.isRed;
 		if (!stopMovement || (waypoints[currentWaypointIndex].name.StartsWith("stop_")))
 		{
@@ -28,10 +27,9 @@ public class CarMovementController : MonoBehaviour
 
 	void MoveTowardsWaypoint()
 	{
-		// Move towards the current waypoint
 		transform.position = Vector3.MoveTowards(transform.position, waypoints[currentWaypointIndex].position, moveSpeed * Time.deltaTime);
 
-		// Check if the car has reached the current waypoint
+		
 		if (Vector3.Distance(transform.position, waypoints[currentWaypointIndex].position) < 0.1f)
 		{
 			if (currentWaypointIndex + 1 == waypoints.Length)
@@ -41,13 +39,13 @@ public class CarMovementController : MonoBehaviour
 			currentWaypointIndex = (currentWaypointIndex + 1) % waypoints.Length;
 		}
 
-		// Rotate towards the next waypoint
+		
 		RotateTowardsWaypoint();
 	}
 
 	void RotateTowardsWaypoint()
 	{
-		// Rotate towards the next waypoint
+		
 		Vector3 direction = waypoints[currentWaypointIndex].position - transform.position;
 		if (direction != Vector3.zero)
 		{
@@ -72,7 +70,7 @@ public class CarMovementController : MonoBehaviour
 	}
 	public void AttachTrafficLightController(TrafficLightController trafficLights)
 	{
-		trafficLight = trafficLights; // Assign TrafficLightController reference
+		trafficLight = trafficLights;
 	}
 	public void OnTriggerEnter(Collider other)
 	{

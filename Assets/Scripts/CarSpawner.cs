@@ -32,7 +32,7 @@ public class CarSpawner : MonoBehaviour
 		if (carMovement != null)
 		{
 			carMovement.SetWaypoints(waypoints);
-			carMovement.AttachTrafficLightController(TrafficLight); // Attach TrafficLightController
+			carMovement.AttachTrafficLightController(TrafficLight);
 		}
 	}
 }

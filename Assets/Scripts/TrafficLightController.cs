@@ -7,32 +7,31 @@ public class TrafficLightController : MonoBehaviour
 	public float greenTime = 5f;
 	public float yellowTime = 2f;
 	public float redTime = 5f;
-	public float initialDelay = 0f; // New variable for initial delay
+	public float initialDelay = 0f; 
 
 	private Light[] lights;
 	private int currentLightIndex = 0;
 	private float timer = 0f;
-	private bool isInitialDelayComplete = false; // Flag to track if initial delay is complete
+	private bool isInitialDelayComplete = false;
 
 	public bool isRed;
 	void Start()
 	{
 		lights = GetComponentsInChildren<Light>();
 
-		// Start the initial delay coroutine
 		StartCoroutine(InitialDelayCoroutine());
 	}
 
 	IEnumerator InitialDelayCoroutine()
 	{
-		yield return new WaitForSeconds(initialDelay); // Wait for the specified initial delay
-		isInitialDelayComplete = true; // Set the flag to indicate that the initial delay is complete
-		SwitchToGreenLight(); // Start the regular light cycle
+		yield return new WaitForSeconds(initialDelay);
+		isInitialDelayComplete = true; 
+		SwitchToGreenLight(); 
 	}
 
 	void Update()
 	{
-		if (!isInitialDelayComplete) // If initial delay is not complete, do not update the lights
+		if (!isInitialDelayComplete) 
 			return;
 
 		timer += Time.deltaTime;
@@ -87,13 +86,13 @@ public class TrafficLightController : MonoBehaviour
 	{
 		switch (currentLightIndex)
 		{
-			case 0: // Green light, switch to yellow
+			case 0: 
 				SwitchToYellowLight();
 				break;
-			case 1: // Yellow light, switch to red
+			case 1: 
 				SwitchToRedLight();
 				break;
-			case 2: // Red light, switch to green
+			case 2: 
 				SwitchToGreenLight();
 				break;
 			default:

@@ -35,7 +35,6 @@ public class ElevatorController : MonoBehaviour
 
 	void FixedUpdate()
 	{
-		Debug.Log($"{isOpen} {transform.position} MOVING {isMoving}");
 		_elapsedTime += Time.deltaTime;
 		foreach (var item in Doors)
 		{
