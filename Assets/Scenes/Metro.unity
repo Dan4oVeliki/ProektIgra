@@ -30756,7 +30756,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7baee985ea29b5e478876cc922b5b267, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SceneName: bravo
+  SceneName: PostMetroScene
   stol: {fileID: 306355977}
 --- !u!1 &1035101786
 GameObject:
@@ -58606,7 +58606,7 @@ Transform:
   m_GameObject: {fileID: 1902386663}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.6000004, y: 0.51, z: 8.3}
+  m_LocalPosition: {x: -0.6000004, y: 0.51, z: -28.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
