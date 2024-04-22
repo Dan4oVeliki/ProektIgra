@@ -17,9 +17,15 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Metro.unity
     guid: b3ab3afc20f8cb1409f362c5f11947bf
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/bravo.unity
     guid: 66d4c25a10493f64282ad7b9d23e549d
+  - enabled: 1
+    path: Assets/Scenes/PostMetroScene.unity
+    guid: 48686542ce2e517499fd9448dce3da0a
+  - enabled: 1
+    path: Assets/Scenes/Magazin.unity
+    guid: ebe6a5474e2820c4b90e3fe5f6486e05
   m_configObjects:
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: ee2fa02971746aa43ae01917dd7b8dbe,
       type: 2}
