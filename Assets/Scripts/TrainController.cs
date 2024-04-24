@@ -36,6 +36,7 @@ public class TrainController : MonoBehaviour
             other.transform.SetParent(transform);
             PushedButton = false;
         }
+        PushedButton = false;
 	}
 	private void OnTriggerExit(Collider other)
 	{

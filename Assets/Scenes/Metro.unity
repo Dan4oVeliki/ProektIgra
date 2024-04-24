@@ -2214,8 +2214,8 @@ MonoBehaviour:
       m_Calls: []
   wheelTransform: {fileID: 915886394}
   attachedRigidbody: {fileID: 1950474562}
-  movementForce: 178.69
-  rotationForce: 170.8
+  movementForce: 80
+  rotationForce: 70
   centerObject: {fileID: 637502687}
   OnWheelRotated:
     m_PersistentCalls:
@@ -15936,7 +15936,7 @@ PrefabInstance:
     - target: {fileID: 6598815579406187037, guid: 18ddb545287c546e19cc77dc9fbb2189,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -33431,8 +33431,8 @@ MonoBehaviour:
       m_Calls: []
   wheelTransform: {fileID: 1269225919}
   attachedRigidbody: {fileID: 1038012539}
-  movementForce: 178.69
-  rotationForce: 170.8
+  movementForce: 80
+  rotationForce: 70
   centerObject: {fileID: 1559682322}
   OnWheelRotated:
     m_PersistentCalls:
@@ -58693,7 +58693,7 @@ MonoBehaviour:
   rb: {fileID: 1902386666}
   speedTrain: 30
   cam: {fileID: 1277858766}
-  StartTrain: 0
+  StartTrain: 1
   triggerObject: {fileID: 306355977}
   PushedButton: 0
 --- !u!1 &1902717382
