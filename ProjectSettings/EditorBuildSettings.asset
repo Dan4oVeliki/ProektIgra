@@ -26,6 +26,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Magazin.unity
     guid: ebe6a5474e2820c4b90e3fe5f6486e05
+  - enabled: 1
+    path: Assets/Scenes/LastScene.unity
+    guid: 367961dfebca5b945bdfd13fcc0547b5
   m_configObjects:
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: ee2fa02971746aa43ae01917dd7b8dbe,
       type: 2}

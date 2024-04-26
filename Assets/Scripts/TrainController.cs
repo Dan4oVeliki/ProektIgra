@@ -11,6 +11,7 @@ public class TrainController : MonoBehaviour
     public bool StartTrain;
 	public GameObject triggerObject;
     public bool PushedButton = false;
+    public FixGravity a;
 
     void Update()
     {
@@ -35,6 +36,7 @@ public class TrainController : MonoBehaviour
         {
             other.transform.SetParent(transform);
             PushedButton = false;
+            a.Activate();
         }
         PushedButton = false;
 	}

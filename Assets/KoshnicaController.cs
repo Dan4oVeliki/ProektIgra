@@ -13,6 +13,8 @@ public class KoshnicaController : MonoBehaviour
 	private List<string> randoms;
 	[SerializeField] string SceneName;
 	public GameObject stol;
+
+	private int sum = 0;
 	private void NextScene()
 	{
 		SceneManager.LoadScene(SceneName);
@@ -24,27 +26,11 @@ public class KoshnicaController : MonoBehaviour
 		{
 			tags.Add(importantTags[i].tag);
 		}
-		important = new Dictionary<string, int>();
-		important.Add("studenchai", 0);
-		important.Add("sokche", 0);
-		important.Add("airqn", 0);
-		important.Add("chips", 0);
-		important.Add("bqlhab", 0);
-		important.Add("pupesh", 0);
-		important.Add("lukanka", 0);
 		randoms = new List<string>();
 	}
 	public void Victory()
 	{
-		Dictionary<string, int> spisuk = new Dictionary<string, int>();
-		spisuk.Add("studenchai", 4);
-		spisuk.Add("sokche", 1);
-		spisuk.Add("airqn", 3);
-		spisuk.Add("chips", 2);
-		spisuk.Add("bqlhab", 1);
-		spisuk.Add("pupesh", 1);
-		spisuk.Add("lukanka", 2);
-		if (important==spisuk)
+		if (sum>=14)
 		{
 			NextScene();
 		}
@@ -53,7 +39,7 @@ public class KoshnicaController : MonoBehaviour
 	{
 		if (!inside && tags.Contains(other.tag))
 		{
-			important[other.tag]++;
+			sum++;
 		}
 		else
 		{

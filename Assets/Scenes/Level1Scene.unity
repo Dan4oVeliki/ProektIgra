@@ -4080,8 +4080,8 @@ MonoBehaviour:
       m_Calls: []
   wheelTransform: {fileID: 122951475}
   attachedRigidbody: {fileID: 1031969156}
-  movementForce: 99.6
-  rotationForce: 27.05
+  movementForce: 20
+  rotationForce: 7
   centerObject: {fileID: 888151892}
   OnWheelRotated:
     m_PersistentCalls:
@@ -4632,10 +4632,10 @@ MonoBehaviour:
       m_Flags: 0
     m_Reference: {fileID: 7752261238372478662, guid: c348712bda248c246b8c49b3db54643f,
       type: 3}
-  head: {fileID: 0}
+  head: {fileID: 486458763}
   MenuDistance: 2
-  LHand: {fileID: 0}
-  RHand: {fileID: 0}
+  LHand: {fileID: 1561171875}
+  RHand: {fileID: 2122659315}
 --- !u!1001 &218874710
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17937,8 +17937,8 @@ MonoBehaviour:
       m_Calls: []
   wheelTransform: {fileID: 736030001}
   attachedRigidbody: {fileID: 2090692287}
-  movementForce: 99.6
-  rotationForce: 27.05
+  movementForce: 20
+  rotationForce: 7
   centerObject: {fileID: 1856802088}
   OnWheelRotated:
     m_PersistentCalls:
@@ -39097,7 +39097,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SceneName: Metro
-  stol: {fileID: 0}
+  stol: {fileID: 2089458094}
 --- !u!65 &1478075103
 BoxCollider:
   m_ObjectHideFlags: 0
