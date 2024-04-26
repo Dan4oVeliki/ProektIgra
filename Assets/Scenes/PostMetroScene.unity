@@ -2160,6 +2160,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78547dce0f720534a8c4384bfbd50749, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  elevatorAudio: {fileID: 0}
 --- !u!1001 &44097717
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -55496,7 +55497,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
